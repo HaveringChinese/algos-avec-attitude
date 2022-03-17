@@ -64,3 +64,49 @@ mergeSort([15, 9, 14, 19, 17]);
   
   
 // }
+
+
+// RE-CREATED THIS FROM MEMORY, helped my understanding greatly
+// function merge(arr1, arr2){
+
+//   let results = [];
+//   let i = 0;
+//   let j = 0;
+
+//   while (i < arr1.length && j < arr2.length){
+//       if(arr1[i] < arr2[j]){
+//           results.push(arr1[i]);
+//           i++;
+//       }
+//       else if (arr2[j] < arr1[i]){
+//           results.push(arr2[j]);
+//           j++;
+//       } else if (arr1[i] === arr2[j]){
+//           results.push(arr1[i], arr2[j]);
+//           i++;
+//           j++;
+//       }
+//   }
+//   if(i < arr1.length){
+//       results = results.concat(arr1.slice(i));
+//   } else if (j < arr2.length){
+//       results = results.concat(arr2.slice(j));
+//   }
+//   return results;
+// }
+
+// // merge([2,4,6,7], [1,3,5,7]);
+
+// function sort(arr){
+
+//   let left = [];
+//   let right = [];
+//   let mid = Math.floor(arr.length / 2);
+
+//   if(arr.length <= 1) return arr;
+//   left = sort(arr.slice(0, mid));
+//   right = sort(arr.slice(mid));
+//   return merge(left, right);
+// }
+
+// sort([2,12,6,13,1,3]);
