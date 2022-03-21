@@ -1,7 +1,3 @@
-//find digits
-//find longest digits
-//put into buckets and then back into array based on index of each digit
-
 // function getDigit(num, place){
 //     let reversed = [];
 //     let stringed = num.toString();
@@ -15,7 +11,7 @@
 
 const getDigitCleanly = (num, place) => Math.floor(Math.abs(num) / Math.pow(10, place)) % 10;
 
-const digitCount = (num) => num.toString().length; 
+const digitCount = (num) => num.toString().length === 1 ? 1 : Math.ceil(Math.abs(num) / 10).toString().length + 1; 
 
 function maxDigits(array){
     let max = 0;
@@ -31,7 +27,7 @@ function radixSort(array){
         let buckets = Array.from({length: 10}, () => []);
         for(let i = 0; i < array.length; i++){
             let currentDigit = getDigitCleanly(array[i], k);
-            buckets[currentDigit] = array[i];
+            buckets[currentDigit].push(array[i]);
         }
         array = buckets.flat()
     }
