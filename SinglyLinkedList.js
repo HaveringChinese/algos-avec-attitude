@@ -1,4 +1,3 @@
-
 class Node{
   constructor(val){
       this.val = val;
@@ -67,9 +66,86 @@ class SinglyLinkedList{
       this.length++;
       return this;
   }
+  get(index){
+      let location = this.head;
+      if(index < 0 || index >= this.length){
+          return null;
+      } else {
+          let counter = 0;
+          while(counter !== index){
+              location = location.next;
+              counter++;
+          }
+          return location;
+      }
+  }
+
+  set(index, value){
+      let location = this.get(index);
+      if(location){
+      location.val = value;
+      return true;
+      } else{
+          return false;
+      }
+  }
+
+  insert(index, value){
+      if(index < 0 || index > this.length) return false;
+      if(index === this.length) return !!this.push(value);
+      if(index === 0) return !!this.unshift(value);
+      
+      let previous = this.get(index - 1);
+      let newNode = new Node(value);
+      let temp = previous.next;
+      previous.next = newNode;
+      newNode.next = temp;
+      this.length++;
+      return true;
+  }
+
+  remove(index){
+      if(index < 0 || index > this.length) return undefined;
+      if(index === this.length - 1) return this.pop();
+      if(index === 0) return this.shift();
+      let previous = this.get(index - 1);
+      let removed = previous.next;
+      previous.next = removed.next;
+      this.length--;
+      return removed;
+  }
+
+  reverse(){      
+      let node = this.head;
+      this.head = this.tail;
+      this.tail = node;
+
+      let prev = null;
+      let next;
+
+      for(let i = 0; i < this.length; i++){
+          next = node.next; //below on chain
+          node.next = prev; //previous node
+          prev = node; //previous node now this node
+          node = next; //node iterates up one on the chain
+      }
+      return this;
+  }
+  
+  print(){
+      var arr = [];
+      var current = this.head;
+      while(current){
+          arr.push(current.val);
+          current = current.next;
+      }
+      console.log(arr);
+  }
 }
 
 var list = new SinglyLinkedList();
-list.push("HELLO");
-list.push("GOODBYE");
-list.push("This is great!");
+list.push("HELLO"); //TAIL down
+list.push("GOODBYE"); //down
+list.push("Oh yeah!"); //down
+list.push("Big time."); //down
+list.push("This is great!"); //HEAD down 
