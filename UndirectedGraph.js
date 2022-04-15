@@ -24,13 +24,40 @@ class Graph {
       }
       delete this.adjacencyList[vertex];
   }
+  DFS_recursive(vertex){
+      let startNode = vertex;
+      var results = [];
+      var visited = {};
+
+      function DFS(vertex){
+          if(!this.adjacencyList[vertex]) return null;
+          visited[vertex] = true;
+          results.push(vertex);
+          for(let i = 0; i < this.adjacencyList[vertex].length; i++){
+              let currentAdjacent = this.adjacencyList[vertex][i];
+              if(visited[currentAdjacent] !== true){
+                  DFS(currentAdjacent);
+              }
+          }
+      }
+      DFS(startNode);
+      return results;
+  }
 }
 
 let g = new Graph();
-g.addVertex("Beijing");
-g.addVertex("Kunming");
-g.addVertex("Guangzhou");
-g.addEdge("Beijing", "Guangzhou");
-g.addEdge("Beijing", "Kunming");
-g.addEdge("Kunming", "Guangzhou");
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
+
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
 
