@@ -62,6 +62,7 @@ class Graph {
           }
       return results;
   }
+  //I defeated the course instructor on this algorithm!!!!!! Get wrecked son!
   BFS(startNode){
       const queue = [startNode];
       const results = [];
