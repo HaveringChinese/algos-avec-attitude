@@ -24,23 +24,42 @@ class Graph {
       }
       delete this.adjacencyList[vertex];
   }
-  DFS_recursive(vertex){
-      let startNode = vertex;
-      var results = [];
-      var visited = {};
-
-      function DFS(vertex){
-          if(!this.adjacencyList[vertex]) return null;
+  DFS_recursive(startNode){
+      const results = [];
+      const visited = {};
+      const adjacencyList = this.adjacencyList;
+      (function DFS(vertex){
+          if(!vertex) return null;
           visited[vertex] = true;
           results.push(vertex);
-          for(let i = 0; i < this.adjacencyList[vertex].length; i++){
-              let currentAdjacent = this.adjacencyList[vertex][i];
-              if(visited[currentAdjacent] !== true){
+          for(let i = 0; i < adjacencyList[vertex].length; i++){
+              let currentAdjacent = adjacencyList[vertex][i];
+              if(!visited[currentAdjacent]){
                   DFS(currentAdjacent);
               }
           }
-      }
-      DFS(startNode);
+      })(startNode);
+      return results;
+  }
+  DFS_iterative(startNode){
+      const stack = [startNode];
+      const results = [];
+      const visited = {};
+      let currentVertex;
+      
+      visited[startNode] = true;
+      while (stack.length){
+          console.log(stack);
+          currentVertex = stack.pop();
+          results.push(currentVertex);
+          
+          this.adjacencyList[currentVertex].forEach(neighbor => {
+             if(!visited[neighbor]){
+                  visited[neighbor] = true;
+                  stack.push(neighbor); 
+                 }
+              });
+          }
       return results;
   }
 }
