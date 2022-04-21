@@ -25,6 +25,31 @@ class WeightedGraph {
       this.adjacencyList[vertex1].push({node: vertex2, weight});
       this.adjacencyList[vertex2].push({node: vertex1, weight});
   }
+  Dijkstra(startVert, endVert){
+      const distances = {};
+      const queue = new PriorityQueue();
+      const previous = {};
+      var length = this.adjacencyList.length;
+
+      distances[startVert] = 0;
+      queue.enqueue(startVert, 0);
+      this.adjacencyList.forEach((vertex) => {            
+          if(vertex != startVert){
+              distances[vertex] = infinity;
+              queue.enqueue(vertex, infinity);
+          }
+          previous[vertex] = null;
+      });
+      while(length){
+          let next = queue.dequeue();
+          if(next === endVert) return distances;
+          for(let i = 0; i < length; i++){
+              for(let j = 0; j < length[i].length; j++){
+                  
+              }
+          }
+      }
+  }
 }
 
 let wg =  new WeightedGraph();
