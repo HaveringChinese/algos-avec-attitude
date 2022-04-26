@@ -29,26 +29,48 @@ class WeightedGraph {
       const distances = {};
       const queue = new PriorityQueue();
       const previous = {};
-      var length = this.adjacencyList.length;
-
+      let path = []; //to return at end
+      let smallest;
+      
       distances[startVert] = 0;
       queue.enqueue(startVert, 0);
-      this.adjacencyList.forEach((vertex) => {            
+      for(let vertex in this.adjacencyList){            
           if(vertex != startVert){
-              distances[vertex] = infinity;
-              queue.enqueue(vertex, infinity);
+              distances[vertex] = Infinity;
+              queue.enqueue(vertex, Infinity);
           }
           previous[vertex] = null;
-      });
-      while(length){
-          let next = queue.dequeue();
-          if(next === endVert) return distances;
-          for(let i = 0; i < length; i++){
-              for(let j = 0; j < length[i].length; j++){
-                  
+      }
+      
+      while(queue.values.length){
+          smallest = queue.dequeue().val;
+          if(smallest === endVert){
+              console.log(distances);
+              console.log(previous);
+            while(previous[smallest]){
+                path.push(smallest);
+                smallest = previous[smallest];
+            }
+              break;
+          } 
+          
+          if(smallest || distances[smallest] !== infinity){
+              for(let neighbor in this.adjacencyList[smallest]){
+                  let nextNode = this.adjacencyList[smallest][neighbor];
+                  let nextNeighbor = nextNode.node;
+                  let candidate = distances[smallest] + nextNode.weight;
+                  if(candidate < distances[nextNeighbor]){
+                      //updating new smallest distance to neighbor
+                      distances[nextNeighbor] = candidate;
+                      //updating previous - how we got to neighbor
+                      previous[nextNeighbor] = smallest;
+                      //enqueue in priority queue with new priority
+                      queue.enqueue(nextNeighbor, candidate);
+                  }
               }
           }
       }
+      return path.concat(smallest).reverse();
   }
 }
 
@@ -57,6 +79,13 @@ wg.addVertex("A");
 wg.addVertex("B");
 wg.addVertex("C");
 wg.addVertex("D");
-wg.addEdge("A", "B", 9);
-wg.addEdge("A", "C", 4);
-wg.addEdge("D", "C", 5);
+wg.addVertex("E");
+wg.addVertex("F");
+wg.addEdge("A", "B", 4);
+wg.addEdge("A", "C", 2);
+wg.addEdge("B", "E", 3);
+wg.addEdge("C", "D", 2);
+wg.addEdge("C", "F", 4);
+wg.addEdge("D", "E", 3);
+wg.addEdge("D", "F", 1);
+wg.addEdge("E", "F", 1);
