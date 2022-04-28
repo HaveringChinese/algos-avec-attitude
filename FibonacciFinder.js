@@ -23,3 +23,9 @@ fib(6);
 //     }
 //     return fibSequence[num]
 // }
+
+//review 6-8 weeks later
+function fib(n){
+  if(n <= 2) return 1;
+  return fib(n-1) + fib(n-2);
+}
