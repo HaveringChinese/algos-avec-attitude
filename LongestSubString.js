@@ -29,3 +29,28 @@ function findLongestSubstring(str){
 
 findLongestSubstring("babyboy")
 // findLongestSubstring("oottootto")
+
+
+//personal attempt as of 5/7/22
+function findLongestSubstring(str){
+
+  //left and right window boundaries
+  //end when left window boundary reaches end of string
+  //when right window boundary encounters a repeated character, jump left window boundary to right and continue
+  let start = 0, end = 0, seen = {}, max = 0;
+  while(start < str.length - 1){
+      end++;
+      seen[str[end]] = (seen[str[end]] || 0) + 1;
+      // length = Math.max(length, (end - start));
+      if(seen[str[end]] > 1){
+          max = Math.max(max, ((end - 1) - start));
+          seen = {};
+          end = start + 1;
+          seen[str[end]] = 1;
+          start++;
+      }
+  }
+  return max;
+}
+
+findLongestSubstring("abcdefghijkabcdefg")
