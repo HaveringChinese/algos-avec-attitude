@@ -149,3 +149,21 @@ list.push("GOODBYE"); //down
 list.push("Oh yeah!"); //down
 list.push("Big time."); //down
 list.push("This is great!"); //HEAD down 
+
+
+
+
+//5/9/22 review attempt
+
+  push(val){
+      let newNode = new Node(val);
+      if(!this.head){
+          this.head = newNode;
+          this.tail = newNode;
+      } else {
+          this.tail.next = newNode;
+          this.tail = this.tail.next;
+      }
+      this.length++;
+      return this;
+  }
