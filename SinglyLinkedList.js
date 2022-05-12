@@ -167,3 +167,23 @@ list.push("This is great!"); //HEAD down
       this.length++;
       return this;
   }
+
+  //5/12/22 review attempt (realized that the course becomes bullshit at this point!)
+
+  pop(){
+    if(!this.head) return null;
+    let current = this.head;
+    let previous = current;
+    while(current.next){
+        previous = current;
+        current = current.next;
+    }
+    this.tail = previous;
+    this.tail.next = null;
+    this.length--;
+    if(this.length === 0){
+        this.head = null;
+        this.tail = null;
+    }
+    return current;
+}
