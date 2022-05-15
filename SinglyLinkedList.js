@@ -187,3 +187,31 @@ list.push("This is great!"); //HEAD down
     }
     return current;
 }
+
+//5/15/22 review attempt (realized that while the course becomes bullshit at this point, each prompt still is a vital review opportunity and I will make full use of them)
+get(index){
+  let location = this.head;
+  let counter = 0;
+  if(!location || index <= 0 || index > this.length) return null;
+
+  while(counter !== index){
+      location = location.next;
+      counter++;
+  }   
+  return location;
+  }
+
+insert(value, index){
+  //checks
+  if(index < 0 || index > this.length) return null;
+  if(index === 0) return !!this.unshift(value);
+  if(index === this.length) return !!this.push(value);
+  
+  let previous = this.get(index - 1);
+  let newNode = new Node(value);
+  let temp = previous.next;
+  previous.next = newNode;
+  newNode.next = temp;
+  this.length++;
+  return true;
+}
