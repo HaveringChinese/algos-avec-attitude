@@ -215,3 +215,27 @@ insert(value, index){
   this.length++;
   return true;
 }
+
+//add rotate method to be finalized in GOOGLE CHROME you asshole! how do you possibly expect to solve problems by shooting
+//in the dark from the hip like an asshole??? and do you truly expect to learn ANYTHING this way??? Honestly.
+//Stop doing things mindlessly you doltish clod!
+
+rotate(number){
+  if(!this.get(number)){
+   return null;   
+  } else {
+      let preNumber = [];
+      let counter = 0;
+      let location = this.head;
+      while(counter < number){
+          preNumber.push(location.val);
+          location.next = this.head;
+          location = location.next;
+          counter++;
+      }
+      for(let i = 0; i < preNumber.length; i++){
+          this.push(preNumber[i]);
+      }
+  }
+  return this;
+}
