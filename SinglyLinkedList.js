@@ -281,3 +281,20 @@ set(index, value){
       return true;
   }
 }
+//5/17/22 add remove method in under 2 minutes!
+remove(index){
+  if(index < 0 || index > this.length){
+    return undefined;  
+  } else {
+      let location = this.head, counter = 0;
+      while(counter < index - 1){
+          location = location.next;
+          counter++;
+      }
+      let newNext = location.next.next;
+      let next = location.next;
+      location.next = newNext;
+      this.length--;
+      return next;
+  }
+}
