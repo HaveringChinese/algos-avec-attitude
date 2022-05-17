@@ -264,3 +264,20 @@ rotate(number){
 return this;
   }
 }
+
+//5/17/22 create super easy "set" method, confirm that udemy testing is trash and I need to make sure myself that every method works
+//it's better if I do this anyway, since it will both reinforce my understanding and build my self-sufficiency skills
+set(index, value){
+  if(index < 0 || index > this.length) {
+      return false;
+  } else {
+      let location = this.head;
+      let counter = 0;
+      while(counter < index){
+          location = location.next;
+          counter++;
+      }
+      location.val = value;
+      return true;
+  }
+}
