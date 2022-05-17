@@ -220,22 +220,47 @@ insert(value, index){
 //in the dark from the hip like an asshole??? and do you truly expect to learn ANYTHING this way??? Honestly.
 //Stop doing things mindlessly you doltish clod!
 
+// rotate(number){
+//   if(!this.get(number)){
+//    return null;   
+//   } else {
+//       let preNumber = [];
+//       let counter = 0;
+//       let location = this.head;
+//       while(counter < number){
+//           preNumber.push(location.val);
+//           location.next = this.head;
+//           location = location.next;
+//           counter++;
+//       }
+//       for(let i = 0; i < preNumber.length; i++){
+//           this.push(preNumber[i]);
+//       }
+//   }
+//   return this;
+// }
+
+//5/17/22 create working rotate method for SLL using actual testing as vowed in above comment 
+
 rotate(number){
-  if(!this.get(number)){
-   return null;   
+  if(!this.get(number)) {
+      return null;
   } else {
-      let preNumber = [];
-      let counter = 0;
-      let location = this.head;
-      while(counter < number){
-          preNumber.push(location.val);
-          location.next = this.head;
-          location = location.next;
-          counter++;
-      }
-      for(let i = 0; i < preNumber.length; i++){
-          this.push(preNumber[i]);
-      }
+  let preNumber = [];
+  let counter = 0;
+  let location = this.head;
+  let next = location.next;
+  while(counter < number){
+      preNumber.push(location);
+      this.remove(location);
+      this.head = next;
+      location = next;
+      next = location.next;
+      counter++;
   }
-  return this;
+  for(let i = 0; i < preNumber.length; i++){
+      this.push(preNumber[i]);
+  }
+return this;
+  }
 }
