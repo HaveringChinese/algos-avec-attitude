@@ -141,14 +141,107 @@ class SinglyLinkedList{
       }
       console.log(arr);
   }
+  rotate(number){
+    if(!this.get(number)) {
+        return null;
+    } else {
+    let preNumber = [];
+    let counter = 0;
+    let location = this.head;
+    let next = location.next;
+    while(counter < number){
+        preNumber.push(location);
+        this.remove(location);
+        this.head = next;
+        location = next;
+        next = location.next;
+        counter++;
+    }
+    for(let i = 0; i < preNumber.length; i++){
+        this.push(preNumber[i]);
+    }
+return this;
+    }
 }
 
-var list = new SinglyLinkedList();
-list.push("HELLO"); //TAIL down
-list.push("GOODBYE"); //down
-list.push("Oh yeah!"); //down
-list.push("Big time."); //down
-list.push("This is great!"); //HEAD down 
+naiveIsPalindrome(head) {
+let reversed = [head.val], regular = [head.val], location = head;
+while(location.next !== null){
+location = location.next;
+regular.push(location.val);
+reversed.unshift(location.val);
+}
+console.log(reversed.join(), regular.join());
+if(reversed.join() === regular.join()) return true;
+return false;
+}
+
+// var isPalindrome = function(head) {
+//     let reversed = [head.val], regular = [head.val], location = head;
+//     while(location.next !== null){
+//         location = location.next;
+//         regular.push(location.val);
+//         reversed.unshift(location.val);
+//     }
+//     if(reversed.toString() === regular.toString()) return true;
+//     return false;
+// };
+
+//ill-fated divide and conquer attempt
+//    isPalindrome(head) {
+//     let pointer = head, counter = 0, midpoint;
+//     while(pointer.next !== null){
+//         pointer = pointer.next;
+//         counter++;
+//     }
+//     let left = [], right = [];
+//     pointer = head;
+//     while(pointer.next !== null){
+//         if(counter = Math.ceil(counter / 2)) midpoint = pointer;
+//     }
+// }
+
+isPalindrome(head){
+var stack = [], current = head, isPalin = true;
+while(current !== null){
+    stack.push(current.val);
+    current = current.next;
+}
+console.log(stack);
+current = head;
+while(current !== null){
+    if(current.val === stack.pop()){
+        isPalin = true;
+    } else {
+        return false;
+    }
+    current = current.next;
+}
+return isPalin;
+}
+
+}
+
+// var list = new SinglyLinkedList();
+// list.push("HELLO"); //TAIL down
+// list.push("GOODBYE"); //down
+// list.push("Oh yeah!"); //down
+// list.push("Big time."); //down
+// list.push("This is great!"); //HEAD down 
+
+var palindromeList = new SinglyLinkedList();
+palindromeList.push(1);
+palindromeList.push(3);
+palindromeList.push(5);
+palindromeList.push(3);
+palindromeList.push(1);
+
+var nonPalindromeList = new SinglyLinkedList();
+nonPalindromeList.push(1);
+nonPalindromeList.push(2);
+nonPalindromeList.push(3);
+nonPalindromeList.push(1);
+
 
 
 
