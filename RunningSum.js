@@ -30,3 +30,12 @@ var runningSum = function(nums) {
 }
 
 runningSum([1,2,4,6]);
+
+// Runtime: 80 ms, faster than 66.61% of JavaScript online submissions for Running Sum of 1d Array.
+// Memory Usage: 42.4 MB, less than 60.82% of JavaScript online submissions for Running Sum of 1d Array.
+var runningSum = function(nums) {
+  for(let i = 1; i < nums.length; i++){
+      nums[i] += nums[i - 1];
+  }
+  return nums;
+};
