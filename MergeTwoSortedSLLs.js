@@ -15,17 +15,17 @@
 //list2 = [1,4,5]
 //merged = [1,1,2,4,5]
 var mergeTwoLists = function(list1, list2) {
-  let newHead;
-  if(list1.head === list2.head){
-      newHead = list1.head; 
-      newHead.next = list2.head;
-  } else {
-      newHead = Math.max(list1.head, list2.head);
-      newHead.next = Math.min(list1.head, list2.head);
-  }
+  let temp1 = list1, temp2 = list2;
   
-  while(){
-      head.next = 
+  while(temp1 && temp2){
+      if(temp1 > temp2){
+          let temp = temp1.head;
+          temp1.head = temp2.head;
+          temp1.head.next = temp;
+          temp2.head = temp2.head.next;
+      } else if (temp1 < temp2) {
+          
+      }
   }
       
 };
