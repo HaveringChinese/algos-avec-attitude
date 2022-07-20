@@ -31,3 +31,14 @@ var reverseList = function(head){
 
 }
 
+//new explanation to firm up thinking
+// let current = head, prev = null, next;
+// while(current){
+//     next = current.next; //next pointer moves ahead of current so linkage is preserved thru switch
+//     current.next = prev; //head.next set to prev (null), then forward facing node aimed to prev (backwards to reverse SLL)
+//     prev = current; //previous node moves forward to prepare for next iteration
+//     current = next; //current node moves forward to preserved linkage for next iteration
+// }
+
+
+
